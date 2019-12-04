@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  定义映射器的接口  -->
+<mapper namespace="/springTest1/src/com/test/mybatis/xmlYingSheQi/BookMapper.java">
+
+	<!-- 定义查询的sql -->
+	<select id="getBook" parameterType="int" resultType="Book">
+		select id, name from book where id = #{id}
+	</select>
+</mapper>
