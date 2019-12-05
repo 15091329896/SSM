@@ -6,8 +6,8 @@
 	
 	<!-- 定义类型别名 -->
 	<typeAliases>
-		<typeAlias alias="people" type="com.test.mybatis.xmlYingSheQi3.People"/>
-		
+		<!-- <typeAlias alias="people" type="com.test.mybatis.xmlYingSheQi3.People"/> -->
+		<package name="com.test.mybatis.xmlYingSheQi3"/>
 	</typeAliases>
 
 	<!-- 这是声明类型处理器的地方 -->
@@ -33,7 +33,9 @@
 	<!-- 映射文件 -->
 	<!-- 代表引入哪些映射器 -->
 	<mappers>
-	
-		<mapper resource="com/test/mybatis/xmlYingSheQi3/PeopleMapper.xml"/>
+		
+		<!-- <mapper resource="com/test/mybatis/xmlYingSheQi3/PeopleMapper.xml"/> -->
+		<package name="com.test.mybatis.xmlYingSheQi3"/>
+		
 	</mappers>
 </configuration>
