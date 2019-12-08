@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	约束条件
+	mapper
+		namespace
+		sql
+
+ -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mybatis.xmlYingSheQi3.PeopleMapper">
+	
+	
+	
+	
+	<!-- type="com.test.mybatis.xmlYingSheQi3.MyCache" -->
+	
+	<cache  readOnly="true" eviction="SOFT" flushInterval="60000" 
+		 size="1000" />
+	
+	<resultMap type="people" id="peopleMapper">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+	</resultMap>
+	
+	<select id="getPeopleByID" parameterType="int" resultMap="peopleMapper">
+		select id, name from people where id = #{id}
+	</select>
+	
+	
+	<select id="getAllPeople" resultType="people" flushCache="false" useCache="true">
+		select id, name from people
+	</select>
+	
+	<insert id="addPeople" parameterType="people" flushCache="false">
+		insert into people(id, name) values(#{id}, #{name})
+	</insert>
+	
+	<update id="updatePeople" parameterType="people" flushCache="false">
+		update people set name = #{name} where id = #{id}
+	</update>
+	
+	<delete id="deletePeople" parameterType="int">
+		delete from people where id = #{id}
+	</delete>
+	
+</mapper>

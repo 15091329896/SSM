@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.test.mybatis.xmlYingSheQi3.ManMapper">
+	
+	<cache-ref namespace="com.test.mybatis.xmlYingSheQi3.PeopleMapper"/>
+	
+	<resultMap type="man" id="manMapper" extends="com.test.mybatis.xmlYingSheQi3.PeopleMapper.peopleMapper">
+		<result property="manNote" column="man_note"/>
+	</resultMap>
+	
+		
+	
+	
+	<select id="getAllMan" resultMap="manMapper">
+		select * from people
+	</select>
+	
+</mapper>
+	
+	
+	
