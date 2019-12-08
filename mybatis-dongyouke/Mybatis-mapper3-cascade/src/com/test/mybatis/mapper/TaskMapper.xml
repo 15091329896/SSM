@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <!-- 
+ 		添加约束
+ 		映射器
+ 			结果集映射
+ 			sql语句
+ 
+ 
+ 
+  -->  
+  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="com.test.mybatis.mapper.TaskMapper">
+	
+	<sql id="columnSql">
+		id, title, context, note
+	</sql>
+	
+	<resultMap type="task" id="taskMapper">
+		<id property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="context" column="context"/>
+		<result property="note" column="note"/>
+	</resultMap>
+	
+	
+	<insert id="addTask" parameterType="task">
+		insert into t_task(<include refid="columnSql"/>)
+			values(null, #{title}, #{context}, #{note});
+	</insert>
+	
+
+	<delete id="deleteTask" parameterType="int">
+		delete from t_task
+			where id = #{id}
+	</delete>
+	
+	
+	
+	<update id="updateTask" parameterType="task">
+		update t_task
+			set title = #{title},
+				context = #{context},
+				note = #{note}
+			where id = #{id}
+	</update>
+	
+	
+	<select id="getTaskById" parameterType="int" resultMap="taskMapper">
+		select <include refid="columnSql"/> from t_task
+			where id = #{id}
+	</select>
+	
+	<select id="getAllTask" resultMap="taskMapper">
+		select <include refid="columnSql"/> from t_task
+	</select>
+	
+	
+</mapper>

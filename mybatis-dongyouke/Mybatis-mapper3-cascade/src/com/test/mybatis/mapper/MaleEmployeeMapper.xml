@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	约束
+	sql
+
+	通过employee表映射出MaleEmployee和femaleEmployee
+		对于java对象中的属性，数据表有的直接简单映射，没有的在类型处理器中根据数据表中的字段可以是任何字段，生成需要的java属性
+
+
+
+ -->
+ 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+
+<mapper namespace="com.test.mybatis.mapper.MaleEmployeeMapper">
+	
+	
+	
+
+	<resultMap type="maleEmployee" id="maleEmployeeMapper">
+		<id property="id" column="id"/>
+		<result property="realName" column="real_name" />
+		<result property="birthday" column="birthday" />
+		<result property="mobile" column="mobile" />
+		<result property="email" column="email" />
+		<result property="position" column="position" />
+		<result property="note" column="note" />
+		<result property="workCard" column="id" typeHandler="com.test.mybatis.typehander.EmpIdMappingToWorkCardObject" />
+		<result property="employeeTasks" column="id" typeHandler="com.test.mybatis.typehander.EmpIdMappingToEmployeeTaskListObject" />
+		<result property="maleHealthForm" column="id" typeHandler="com.test.mybatis.typehander.EmpIdMappingToMaleHealthFormObject" />
+	</resultMap>
+
+	 <!-- 传递两个参数，一个是MaleEmployee对象，一个是sex参数 -->
+	 
+ 	<sql id="t_employee_column">
+		id,
+		<include refid="t_employee_column_no_id" />
+	</sql>
+	
+	<sql id="t_employee_column_no_id">
+		real_name,
+		sex,
+		birthday,
+		mobile,
+		email,
+		position,
+		note
+	</sql>
+	
+	<insert id="addMaleEmployee" useGeneratedKeys="true" keyProperty="maleEmployee.id" keyColumn="id"> 
+		insert into t_employee(
+			<include refid="t_employee_column_no_id" />
+		)values(
+			#{maleEmployee.realName},
+			1,
+			#{maleEmployee.birthday},
+			#{maleEmployee.mobile},
+			#{maleEmployee.email},
+			#{maleEmployee.position},
+			#{maleEmployee.note}
+		)
+	</insert>
+
+
+	<delete id="deleteMaleEmployee" parameterType="int">
+		delete from t_employee
+			where id = #{id}
+	</delete>
+
+	
+	<update id="updateMaleEmployee">
+		update t_employee
+			set real_name = #{maleEmployee.realName},
+				birthday = #{maleEmployee.birthday},
+				mobile = #{maleEmployee.mobile},
+				email = #{maleEmployee.email},
+				position = #{maleEmployee.position},
+				note = #{maleEmployee.note}
+			where id = #{maleEmployee.id}
+	</update>
+	
+	<select id="getMaleEmployeeById" parameterType="int" resultMap="maleEmployeeMapper">
+		select <include refid="t_employee_column" /> from t_employee
+		where id = #{id}
+	</select>
+	
+	
+	<select id="getAllMaleEmployee" resultMap="maleEmployeeMapper">
+		select <include refid="t_employee_column" /> from t_employee
+	</select>
+	
+	
+</mapper>

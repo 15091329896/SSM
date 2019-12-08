@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+	 
+<mapper namespace="com.test.mybatis.mapper.EmployeeTaskMapper">
+	<resultMap type="employeeTask" id="employeeTaskMapper">
+	
+		<id property="id" column="id"/>
+		<result property="empId" column="emp_id"/>
+		<result property="taskName" column="task_name"/>
+		<result property="note" column="note"/>
+		<result property="task" column="task_id" typeHandler="com.test.mybatis.typehander.TaskIDMappingToTaskObject" />
+	</resultMap>
+		
+	<insert id="addEmployeeTask" parameterType="employeeTask" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into t_employee_task (
+			emp_id, 
+			task_id, 
+			task_name, 
+			note
+			) values (
+				#{empId},
+				#{task.id},
+				#{taskName},
+				#{note}
+			)
+	</insert>
+	
+	
+	<delete id="deleteEmployeeTask" parameterType="int">
+		delete from t_employee_task
+			where id = #{id}
+	</delete>
+	
+	
+	<update id="updateEmployeeTask" parameterType="employeeTask">
+		update t_employee_task
+			set emp_id = #{empId},
+				task_id = #{task.id},
+				task_name = #{taskName},
+				note = #{note}
+			where id = #{id}
+	</update>
+	
+	<sql id="t_employee_task_all_column">
+			id,
+			emp_id,
+			task_id, 
+			task_name, 
+			note
+	</sql>
+	
+	<select id="getEmployeeTaskById" parameterType="int" resultMap="employeeTaskMapper">
+		select <include refid="t_employee_task_all_column" /> 
+			from t_employee_task
+			where id = #{id}
+	</select>
+	
+	
+	<select id="getEmployeeTaskByEmpId" parameterType="int" resultMap="employeeTaskMapper">
+		select <include refid="t_employee_task_all_column" /> 
+			from t_employee_task
+			where emp_id = #{empId}
+	</select>
+	
+	
+	<select id="getAllEmployeeTask" resultMap="employeeTaskMapper">
+		select <include refid="t_employee_task_all_column" /> 
+			from t_employee_task
+	</select>
+	
+	
+</mapper>	 
