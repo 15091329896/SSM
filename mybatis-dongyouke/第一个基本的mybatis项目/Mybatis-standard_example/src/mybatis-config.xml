@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
 <configuration>
+	<!-- 注意配置的顺序不可改变 -->
+
+
+
+	<!-- 定义全局设置 -->
+	<settings>
+		<setting name="lazyLoadingEnabled" value="true" />
+	</settings>
 	
 	
 	<!-- 定义类型别名 -->
 	<typeAliases>
-		<package name="com.test.mybatis.modul"/>
 		<package name="com.test.mybatis.xmlYingSheQi3"/>
 	</typeAliases>
 
 	<!-- 这是声明类型处理器的地方 -->
-	<typeHandlers>
-		<package name="com.test.mybatis.typehander"/>
-	</typeHandlers>
+	
 
 	<!-- 数据库环境 -->
 	<environments default="development">
@@ -36,18 +40,11 @@
 	<!-- 映射文件 -->
 	<!-- 代表引入哪些映射器 -->
 	<mappers>
-		<!-- 此处使用包扫描器不稳定，优先使用resource的方式 -->
+		
+		<!-- 包扫描失效，应该使用resource -->
+		
 		<mapper resource="com/test/mybatis/xmlYingSheQi3/PeopleMapper.xml"/>
-		<mapper resource="com/test/mybatis/mapper/TaskMapper.xml"/>
-		<mapper resource="com/test/mybatis/mapper/WorkCardMapper.xml"/>
-		<mapper resource="com/test/mybatis/mapper/EmployeeTaskMapper.xml"/>
-		<mapper resource="com/test/mybatis/mapper/WorkCardMapper.xml"/>
-		<mapper resource="com/test/mybatis/mapper/FemaleHealthFormMapper.xml"/>
-		<mapper resource="com/test/mybatis/mapper/MaleHealthFormMapper.xml"/>
-		<mapper resource="com/test/mybatis/mapper/MaleEmployeeMapper.xml"/>
-		<!-- <mapper resource="com/test/mybatis/mapper/MaleEmployeeMapper.xml"/>
-		<mapper resource="com/test/mybatis/mapper/MaleEmployeeMapper.xml"/> -->
-		<!-- <package name="com.test.mybatis.xmlYingSheQi3"/>
-		<package name="com.test.mybatis.mapper"/> -->
+		<!-- <package name="com.test.mybatis.xmlYingSheQi3"/> -->
+		
 	</mappers>
 </configuration>
