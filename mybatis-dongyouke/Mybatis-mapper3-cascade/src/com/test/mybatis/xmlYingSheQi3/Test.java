@@ -154,10 +154,7 @@ public class Test {
 //		WorkCard workCard = workCardDao.getWorkCardByEmpId(1);
 //		maleHealthFormDao = new MaleHealthFormDao();
 //		maleHealthFormDao.getMaleHealthFormByEmpId(1);
-		test2();
-		
-		
-		
+		testMaleEmpolyee();
 		
 		
 		
@@ -184,7 +181,7 @@ public class Test {
 		System.exit(0);
 	}
 
-	private static void test2() {
+	private static void testMaleEmpolyee() {
 		employeeTaskDao = new EmployeeTaskDao();
 		List<EmployeeTask> allEmployeeTask = employeeTaskDao.getAllEmployeeTask();
 		maleHealthFormDao = new MaleHealthFormDao();
@@ -192,13 +189,13 @@ public class Test {
 		workCardDao = new WorkCardDao();
 		WorkCard workCard = workCardDao.getWorkCardByEmpId(1);
 		maleEmployeeDao = new MaleEmployeeDao();
-		Date birthday = new Date(new java.util.Date().getTime());
+		java.sql.Date birthday = new java.sql.Date(new java.util.Date().getTime());
 		MaleEmployee maleEmployee = new MaleEmployee("Àî°×", birthday, "15011112222", "email@qq.com", "Î»ÖÃ", "±¸×¢", workCard, allEmployeeTask, maleHealthForm);
 //		maleEmployeeDao.addMaleEmployee(maleEmployee);
 		
-//		maleEmployeeDao.getAllMaleEmployee();
+		maleEmployeeDao.getAllMaleEmployee();
 		
-		maleEmployeeDao.getMaleEmployeeById(1);
+//		maleEmployeeDao.getMaleEmployeeById(1);
 	}
 
 	private void getAllPeople() {

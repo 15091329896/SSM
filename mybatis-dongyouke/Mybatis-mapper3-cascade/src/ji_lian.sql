@@ -14,7 +14,7 @@ create table t_employee
 	primary key (id)
 );
 
-
+drop table if exists t_employee;
 select * from t_employee;
 
 select str_to_date('20190101',"%Y%m%d");
@@ -93,6 +93,8 @@ create table t_male_health_form
 	primary key (id)
 );
 select * from t_male_health_form;
+delete from t_male_health_form
+	where id <> 1;
 /*======================================================*/
 /*	Table:	t_task */
 /*======================================================*/

@@ -118,6 +118,10 @@ public class MaleHealthFormDao extends SqlSessionUtil3 implements MaleHealthForm
 	public MaleHealthForm getMaleHealthFormByEmpId(int empId) {
 		fill();
 		MaleHealthForm maleHealthForm = mapper.getMaleHealthFormByEmpId(empId);
+		if(maleHealthForm == null) {
+			System.out.println("未找到" + empId + "号员工的体检表");
+			return null;
+		}
 		System.out.println(maleHealthForm.toString());
 		close();
 		return maleHealthForm;
