@@ -1,0 +1,12 @@
+/*
+
+
+在mybatis中调用存储过程
+	在数据库中定义存储过程  procedure_test_1
+	在mybatis中调用存储过过程
+	    定义存储过程参数对应的实体类:用来封装所有的输入输出等涉及到的多个参数  com.test.mybatis.parameter.ProcedureTest1Param
+	    在sql映射文件中通过select命令调用存储过程，并指定语句类型为存储过程 callable
+	    在花括号中调用存储过程
+	    指定参数的类型是输入还是输出
+
+*/
