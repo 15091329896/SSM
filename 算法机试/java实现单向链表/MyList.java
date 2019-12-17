@@ -100,10 +100,14 @@ public class MyList {
 	}
 	
 	public void getAll() {
+		System.out.print("[");
 		for (int i = 0; i < this.getRealSize(); i++) {
-			System.out.println(this.get(i));
+			System.out.print(this.get(i));
+			if(i < this.getRealSize() - 1 ) {
+				System.out.print(", ");
+			} 
 		}
-		
+		System.out.println("]");
 	}
 	
 	
