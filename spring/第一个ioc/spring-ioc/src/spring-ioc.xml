@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	beans元素
+		命名空间
+		xml约束实例
+		命名空间和xml约束文件的对应关系
+	bean元素
+		id
+		类路径
+		属性
+			名称
+			值
+		
+ -->
+ 
+ <beans xmlns="http://www.springframework.org/schema/beans"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+ 		
+ 	<bean id="source" class="com.spring.test.ioc.Source">
+ 		<property name="fruit"  value="橙汁"/>
+ 		<property name="sugar"  value="少糖"/>
+ 		<property name="size"  value="大杯"/>
+	</bean>	
+ 		
+ 	<bean id="juiceMakerIOC" class="com.spring.test.ioc.JuiceMakerIOC"
+ 		destroy-method="destory" init-method="init" >
+ 		<property name="yinLiaoShop" value="天天向上饮料店"/>
+ 		<property name="source" ref="source"/>
+ 	</bean>
+ 		
+ 
+ </beans>
