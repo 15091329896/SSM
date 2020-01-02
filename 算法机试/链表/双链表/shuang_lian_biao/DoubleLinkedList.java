@@ -17,6 +17,7 @@ public class DoubleLinkedList<anyType> implements DoubleLinkedListInte<anyType> 
 	}
 
 	public void setBegin(Node<anyType> begin) {
+		begin.setPre(null);
 		this.begin = begin;
 	}
 
@@ -45,9 +46,11 @@ public class DoubleLinkedList<anyType> implements DoubleLinkedListInte<anyType> 
 		if (next == null) {
 			System.out.println("这是个空链表");
 		}
+		int i = 0;
 		while (next != null) {
-			System.out.println(next.toString());
+			System.out.println(i + ":" + next.toString());
 			next = next.getNext();
+			i++;
 		}
 	}
 
@@ -112,6 +115,7 @@ public class DoubleLinkedList<anyType> implements DoubleLinkedListInte<anyType> 
 				Node<anyType> pre = next.getPre();
 				Node<anyType> nextTmp = next.getNext();
 				pre.setNext(nextTmp);
+				nextTmp.setPre(pre);
 				return true;
 			}
 			next = next.getNext();
@@ -127,6 +131,7 @@ public class DoubleLinkedList<anyType> implements DoubleLinkedListInte<anyType> 
 		Node<anyType> end = getEnd();
 		end.setNext(node);
 		node.setNext(null);
+		node.setPre(end);
 		return true;
 	}
 

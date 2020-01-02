@@ -7,6 +7,18 @@ public class Test {
 		 *
 		 * */
 		
+		DoubleLinkedList<String> list = new DoubleLinkedList<>();
+		
+		Node<String> begin = new Node<String>("0ºÅÔªËØ");
+		list.setBegin(begin);
+//		list.printAllNode();
+		list.add(new Node<String>("1ºÅÔªËØ"));
+		list.add(new Node<String>("2ºÅÔªËØ"));
+		System.out.println(list.size());
+		list.printAllNode();
+		System.out.println("//////////////////////////");
+		list.delete(0);
+		list.printAllNode();
 		
 		
 	}

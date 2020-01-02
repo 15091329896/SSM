@@ -38,7 +38,16 @@ public class Node<anyType> {
 
 	@Override
 	public String toString() {
-		return "Node [anyTypeValue=" + anyTypeValue + ", pre=" + pre + ", next=" + next + "]";
+		String preString = null;
+		String nextString = null;
+		if(pre != null) {
+			preString = pre.getAnyTypeValue().toString();
+		}
+		if(next != null) {
+			nextString = next.getAnyTypeValue().toString();
+		}
+		return "Node [anyTypeValue=" + anyTypeValue +
+				", pre=" + preString + ", next=" + nextString + "]";
 	}
 
 	@Override
