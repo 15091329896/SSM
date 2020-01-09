@@ -1,0 +1,6 @@
+python p1应该掌握
+
+python的安装，验证
+使用python完成基本的流程控制
+
+完毕
