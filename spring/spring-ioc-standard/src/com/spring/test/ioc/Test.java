@@ -1,10 +1,13 @@
 package com.spring.test.ioc;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.spring.test.bean.JuiceMakerIOC;
-import com.spring.test.bean.Source;
-import com.spring.test.common.JuiceMaker;
+import com.spring.test.bean.Book;
+import com.spring.test.bean.User;
+import com.spring.test.config.BeanConfig;
 
 public class Test {
 	public static void main(String[] args) {
@@ -18,6 +21,7 @@ public class Test {
 
 	}
 
+	@SuppressWarnings("resource")
 	private void testIOC() {
 		/*
 		 * 
@@ -25,27 +29,19 @@ public class Test {
 		 * 通过容器，根据类型ID创建对应的对象 通过得到的对象调用它自己的函数 关闭容器
 		 */
 
-		ClassPathXmlApplicationContext context = 
-				new ClassPathXmlApplicationContext("spring-ioc.xml");
-		System.out.println("\n");
+		ApplicationContext context = null;
+		
+		context = new ClassPathXmlApplicationContext("spring-ioc.xml");
+		Book book = (Book) context.getBean("book");
+		System.out.println(book.toString());
+		
+		context = new AnnotationConfigApplicationContext(BeanConfig.class);
+		User user = (User) context.getBean("user");
+		System.out.println(user.toString());
 		
 		
 		
-		Source source = (Source) context.getBean("source");
-		System.out.println(source.toString());
-		
-		
-		
-		System.out.println("\n");
-		context.close();
 	}
 	
-	private void testCommon() {
-		JuiceMaker juiceMaker = new JuiceMaker();
-		juiceMaker.setWater("矿泉水");
-		juiceMaker.setFruit("橙子");
-		juiceMaker.setSugar("少糖");
-		System.out.println(juiceMaker.makeJuice());
-	}
 
 }
